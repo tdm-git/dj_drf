@@ -3,6 +3,8 @@ import React from "react";
 import './App.css';
 import UserList from './components/Users.js'
 import axios from "axios";
+import Footer from "./components/Footer.js";
+import MainMenu from "./components/MainMenu.js";
 
 class App extends React.Component{
 
@@ -14,20 +16,6 @@ class App extends React.Component{
   }
 
   componentDidMount() {
-       // const users = [
-       //     {
-       //         'username': 'Фёдор',
-       //         'first_name': 'Фёдор',
-       //         'last_name': 'Достоевский',
-       //         'email': 1821
-       //     },
-       //     {
-       //         'username': 'Александр',
-       //         'first_name': 'Александр',
-       //         'last_name': 'Грин',
-       //         'email': 1880
-       //     },
-       // ]
        axios.get('http://127.0.0.1:8000/api/users')
        .then(response => {
            const users = response.data
@@ -37,17 +25,14 @@ class App extends React.Component{
                }
            )
        }).catch(error => console.log(error))
-       // this.setState(
-       //     {
-       //         'users': users
-       //     }
-       // )
    }
 
   render() {
     return(
         <div>
-          <UserList users={this.state.users} />
+        <MainMenu />
+        <UserList users={this.state.users} />
+        <Footer />
         </div>
     )
   }
