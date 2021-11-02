@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # add app
     'rest_framework',
-    'users',
     'corsheaders',
+    'users',
     'tasks',
 ]
 

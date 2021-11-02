@@ -7,10 +7,12 @@ class Projects(models.Model):
     url_git = models.URLField(blank=True)
     users = models.ManyToManyField(User)
 
+    def __str__(self):
+        return f'proj {self.pk} - {self.name}'
 
 class ToDo(models.Model):
-    project = models.OneToOneField(Projects, on_delete=models.CASCADE)
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE, unique=False)
     description = models.TextField()
     data_create = models.DateTimeField(auto_now_add=True)
     data_update = models.DateTimeField(auto_now=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=False)
