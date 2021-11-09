@@ -16,3 +16,4 @@ class ToDo(models.Model):
     data_create = models.DateTimeField(auto_now_add=True)
     data_update = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, unique=False)
+    is_active = models.BooleanField()
