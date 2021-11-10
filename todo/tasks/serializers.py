@@ -3,7 +3,7 @@ from .models import Projects, ToDo
 # from ..users.serializers import UsersModelSerializer
 
 
-class ProjectsModelSerializer(HyperlinkedModelSerializer):
+class ProjectsModelSerializer(ModelSerializer):
     # users = UsersModelSerializer(many=True)
 
     class Meta:
