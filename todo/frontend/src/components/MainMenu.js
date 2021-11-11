@@ -1,12 +1,19 @@
 import React from 'react'
+import {BrowserRouter, Link} from "react-router-dom";
 
 
 const MainMenu = () => {
   return (
         <ul>
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Пользователи</a></li>
-        <li><a href="#">Контакты</a></li>
+        <li>
+            <Link to='/'>Проекты</Link>
+        </li>
+        <li>
+            <Link to='/todo'>Задачи</Link>
+        </li>
+        <li>
+            <Link to='/users'>Пользователи</Link>
+        </li>
         </ul>
     );
 };

@@ -7,6 +7,17 @@ import MainMenu from "./components/MainMenu.js";
 import UserList from './components/Users.js'
 import ProjectList from "./components/Projects.js";
 import ToDoList from "./components/ToDo";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+
+
+const NotFound404 = ({ location }) => {
+  return (
+    <div>
+        <h1>Страница по адресу '{location.pathname}' не найдена</h1>
+    </div>
+  )
+}
+
 
 class App extends React.Component {
 
@@ -57,10 +68,15 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <MainMenu/>
-                <UserList users={this.state.users}/>
-                <ProjectList projects={this.state.projects}/>
-                <ToDoList todos={this.state.todos}/>
+                <BrowserRouter>
+                    <MainMenu/>
+                    <Switch>
+                        <Route exact path='/' component={() => <ProjectList projects={this.state.projects}/>}/>
+                        <Route exact path='/todo' component={() => <ToDoList todos={this.state.todos}/>}/>
+                        <Route exact path='/users' component={() => <UserList users={this.state.users}/>}/>
+                        <Route component={NotFound404} />
+                    </Switch>
+                </BrowserRouter>
                 <Footer/>
             </div>
         )
