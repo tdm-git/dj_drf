@@ -21,7 +21,7 @@ class ProjectsModelViewSet(ModelViewSet):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Projects.objects.all()
     serializer_class = ProjectsModelSerializer
-    pagination_class = ProjectsLimitOffsetPagination
+    # pagination_class = ProjectsLimitOffsetPagination
     # filterset_fields  = ['name']
     filterset_class = ProjectsFilter
 
@@ -30,7 +30,7 @@ class ToDoModelViewSet(ModelViewSet):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
-    pagination_class = ToDoLimitOffsetPagination
+    # pagination_class = ToDoLimitOffsetPagination
     filterset_class = ToDoFilter
 
     def destroy(self, request, *args, **kwargs):
