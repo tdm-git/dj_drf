@@ -11,7 +11,8 @@ class ProjectsFilter(filters.FilterSet):
 
 
 class ToDoFilter(filters.FilterSet):
-   project = filters.CharFilter(lookup_expr='contains')
+   # project = filters.CharFilter(lookup_expr='contains')
+   # project = filters.ChoiceFilter(choices= Projects.objects.all())
 
    class Meta:
        model = ToDo
