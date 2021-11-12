@@ -8,6 +8,7 @@ import UserList from './components/Users.js'
 import ProjectList from "./components/Projects.js";
 import ToDoList from "./components/ToDo";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import ProjectToDoList from "./components/ProjectTodoList";
 
 
 const NotFound404 = ({ location }) => {
@@ -74,7 +75,10 @@ class App extends React.Component {
                         <Route exact path='/' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todo' component={() => <ToDoList todos={this.state.todos}/>}/>
                         <Route exact path='/users' component={() => <UserList users={this.state.users}/>}/>
-                        <Route component={NotFound404} />
+                        <Route path="/project/:id">
+                            <ProjectToDoList todos={this.state.todos}/>
+                        </Route>
+                        <Route component={NotFound404}/>
                     </Switch>
                 </BrowserRouter>
                 <Footer/>
