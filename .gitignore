@@ -2,3 +2,4 @@
 /venv/
 db.sqlite3
 /.env
+/todo/frontend/node_modules/.cache/babel-loader/*.json
