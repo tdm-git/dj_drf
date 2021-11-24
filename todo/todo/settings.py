@@ -163,5 +163,7 @@ REST_FRAMEWORK = {
     ],
 
     # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning', # UrlPathVersioning
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',  # NamespaceVersioning
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',  # NamespaceVersioning
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',  # QueryParameterVersioning'
+
 }

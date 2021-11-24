@@ -44,6 +44,11 @@ class ToDoModelViewSet(ModelViewSet):
     filterset_class = ToDoFilter
     serializer_class = ToDoModelSerializer
 
+    def get_serializer_class(self):
+        if self.request.version == '2.0':
+            return ToDoModelSerializerName
+        return ToDoModelSerializer
+
 
 class ToDoModelListAPI(ListAPIView):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
