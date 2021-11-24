@@ -17,7 +17,14 @@ class ToDoLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 20
 
 
-class ProjectsModelViewSet(ListAPIView):
+class ProjectsModelViewSet(ModelViewSet):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    queryset = Projects.objects.all()
+    filterset_class = ProjectsFilter
+    serializer_class = ProjectsModelSerializer
+
+
+class ProjectsModelListAPI(ListAPIView):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = Projects.objects.all()
     # serializer_class = ProjectsModelSerializer
@@ -31,7 +38,14 @@ class ProjectsModelViewSet(ListAPIView):
         return ProjectsModelSerializer
 
 
-class ToDoModelViewSet(ListAPIView):
+class ToDoModelViewSet(ModelViewSet):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    queryset = ToDo.objects.all()
+    filterset_class = ToDoFilter
+    serializer_class = ToDoModelSerializer
+
+
+class ToDoModelListAPI(ListAPIView):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = ToDo.objects.all()
     # serializer_class = ToDoModelSerializer

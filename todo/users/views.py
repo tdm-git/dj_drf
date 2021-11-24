@@ -7,7 +7,7 @@ from rest_framework import mixins
 
 
 # class UsersCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet):
-class UsersCustomViewSet(ListAPIView):
+class UsersCustomListAPI(ListAPIView):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = User.objects.all()
 
@@ -15,3 +15,11 @@ class UsersCustomViewSet(ListAPIView):
         if self.request.version == 'v.2':
             return UsersModelSerializerFull
         return UsersModelSerializer
+
+
+class UsersCustomViewSet(ModelViewSet):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    queryset = User.objects.all()
+    serializer_class = UsersModelSerializer
+
+

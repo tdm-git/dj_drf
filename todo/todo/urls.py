@@ -18,12 +18,13 @@ from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 from tasks.views import ProjectsModelViewSet, ToDoModelViewSet
-from users.views import UsersCustomViewSet
+from tasks.views import ProjectsModelListAPI, ToDoModelListAPI
+from users.views import UsersCustomViewSet, UsersCustomListAPI
 
 router = DefaultRouter()
-# router.register('users', UsersCustomViewSet, basename='users')
-# router.register('projects', ProjectsModelViewSet)
-# router.register('todo', ToDoModelViewSet)
+router.register('users', UsersCustomViewSet, basename='users')
+router.register('projects', ProjectsModelViewSet)
+router.register('todo', ToDoModelViewSet)
 # router.register('param', views.ArticleParamFilterViewSet)
 
 urlpatterns = [
@@ -31,7 +32,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token),
     path('api/', include(router.urls)),
-    path('api/<str:version>/projects/', ProjectsModelViewSet.as_view()),
-    path('api/<str:version>/todo/', ToDoModelViewSet.as_view()),
-    path('api/<str:version>/users/', UsersCustomViewSet.as_view())
+    path('api/<str:version>/projects/', ProjectsModelListAPI.as_view()),
+    path('api/<str:version>/todo/', ToDoModelListAPI.as_view()),
+    path('api/<str:version>/users/', UsersCustomListAPI.as_view())
 ]
