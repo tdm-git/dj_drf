@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import UserListAPIView
+from .views import ProjectsModelListAPI, ToDoModelListAPI
 
-app_name = 'userapp'
+app_name = 'tasks'
 urlpatterns = [
-    path('', UserListAPIView.as_view()),
+    path('', ToDoModelListAPI.as_view()),
+    # path('/projects/', ProjectsModelListAPI.as_view()),
 ]
