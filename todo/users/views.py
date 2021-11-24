@@ -1,11 +1,17 @@
-from rest_framework.renderers import JSONRenderer,BrowsableAPIRenderer
+from rest_framework.generics import ListAPIView
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from .models import User
-from .serializers import UsersModelSerializer
+from .serializers import UsersModelSerializer, UsersModelSerializerFull
 from rest_framework import mixins
 
 
-class UsersCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet):
-    renderer_classes = [JSONRenderer,BrowsableAPIRenderer]
+# class UsersCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericViewSet):
+class UsersCustomViewSet(ListAPIView):
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     queryset = User.objects.all()
-    serializer_class = UsersModelSerializer
+
+    def get_serializer_class(self):
+        if self.request.version == 'v.2':
+            return UsersModelSerializerFull
+        return UsersModelSerializer

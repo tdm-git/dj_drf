@@ -17,18 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
-from users.views import UsersCustomViewSet
 from tasks.views import ProjectsModelViewSet, ToDoModelViewSet
+from users.views import UsersCustomViewSet
 
 router = DefaultRouter()
-router.register('users', UsersCustomViewSet, basename='users')
-router.register('projects', ProjectsModelViewSet)
-router.register('todo', ToDoModelViewSet)
+# router.register('users', UsersCustomViewSet, basename='users')
+# router.register('projects', ProjectsModelViewSet)
+# router.register('todo', ToDoModelViewSet)
 # router.register('param', views.ArticleParamFilterViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_auth_token),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('api/<str:version>/projects/', ProjectsModelViewSet.as_view()),
+    path('api/<str:version>/todo/', ToDoModelViewSet.as_view()),
+    path('api/<str:version>/users/', UsersCustomViewSet.as_view())
 ]
