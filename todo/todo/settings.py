@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'tasks',
     'django_filters',
     'drf_yasg',
+    "graphene_django",  # Required for GraphiQL
 ]
 
 MIDDLEWARE = [
@@ -167,4 +168,8 @@ REST_FRAMEWORK = {
     # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',  # NamespaceVersioning
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',  # QueryParameterVersioning'
 
+}
+
+GRAPHENE = {
+    "SCHEMA": "todo.schema.schema"
 }
